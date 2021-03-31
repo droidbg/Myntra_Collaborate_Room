@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "608022109060",
+    "project_id": "myntrachatroom",
+    "storage_bucket": "myntrachatroom.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:608022109060:android:1e0d184a77383beef45bd1",
+        "android_client_info": {
+          "package_name": "com.myntra.chatroom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "608022109060-5rj91v6gsiric2fm6jkb26tn2qhsf35l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZliGyu5u6U6La7oS7KE6LlklbO8beyNc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "608022109060-5rj91v6gsiric2fm6jkb26tn2qhsf35l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
