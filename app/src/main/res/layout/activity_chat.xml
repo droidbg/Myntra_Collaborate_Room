@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
+    android:background="@drawable/myntrabg"
     tools:context=".Activities.ChatActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -50,7 +50,7 @@
                     android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mian Asad Ali"
+                    android:text="Myntra Chatroom"
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -101,16 +101,16 @@
 
             <ImageView
                 android:id="@+id/attachment"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
                 android:layout_marginRight="12dp"
                 app:srcCompat="@drawable/ic_attachment"
                 app:tint="#676767" />
 
             <ImageView
                 android:id="@+id/camera"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
                 android:layout_marginRight="12dp"
                 app:srcCompat="@drawable/ic_camera"
                 app:tint="#676767" />

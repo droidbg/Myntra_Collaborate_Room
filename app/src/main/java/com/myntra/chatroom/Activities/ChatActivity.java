@@ -93,17 +93,17 @@ public class ChatActivity extends AppCompatActivity {
         database.getReference().child("presence").child(receiverUid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()) {
-                    String status = snapshot.getValue(String.class);
-                    if(!status.isEmpty()) {
-                        if(status.equals("Offline")) {
-                            binding.status.setVisibility(View.GONE);
-                        } else {
-                            binding.status.setText(status);
-                            binding.status.setVisibility(View.VISIBLE);
-                        }
-                    }
-                }
+//                if(snapshot.exists()) {
+//                    String status = snapshot.getValue(String.class);
+//                    if(!status.isEmpty()) {
+//                        if(status.equals("Offline")) {
+//                            binding.status.setVisibility(View.GONE);
+//                        } else {
+//                            binding.status.setText(status);
+//                            binding.status.setVisibility(View.VISIBLE);
+//                        }
+//                    }
+//                }
             }
 
             @Override
@@ -128,6 +128,7 @@ public class ChatActivity extends AppCompatActivity {
                         messages.clear();
                         for(DataSnapshot snapshot1 : snapshot.getChildren()) {
                             Message message = snapshot1.getValue(Message.class);
+                            assert message != null;
                             message.setMessageId(snapshot1.getKey());
                             messages.add(message);
                         }
@@ -150,7 +151,8 @@ public class ChatActivity extends AppCompatActivity {
                 Message message = new Message(messageTxt, senderUid, date.getTime());
                 binding.messageBox.setText("");
 
-                String randomKey = database.getReference().push().getKey();
+                String randomKey;
+                randomKey = database.getReference().push().getKey();
 
                 HashMap<String, Object> lastMsgObj = new HashMap<>();
                 lastMsgObj.put("lastMsg", message.getMessage());
@@ -220,7 +222,7 @@ public class ChatActivity extends AppCompatActivity {
         });
 
 
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+//        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 //        getSupportActionBar().setTitle(name);
 //

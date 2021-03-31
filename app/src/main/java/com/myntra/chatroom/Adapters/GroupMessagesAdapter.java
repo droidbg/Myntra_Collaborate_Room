@@ -1,5 +1,6 @@
 package com.myntra.chatroom.Adapters;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -65,6 +66,7 @@ public class GroupMessagesAdapter extends RecyclerView.Adapter {
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Message message = messages.get(position);
@@ -245,6 +247,7 @@ public class GroupMessagesAdapter extends RecyclerView.Adapter {
             }
 
             viewHolder.binding.message.setOnTouchListener(new View.OnTouchListener() {
+              //  @SuppressLint("ClickableViewAccessibility")
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
                     popup.onTouch(v, event);

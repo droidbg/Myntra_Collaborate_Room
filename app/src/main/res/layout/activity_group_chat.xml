@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
+    android:background="@drawable/myntrabg"
     tools:context=".Activities.GroupChatActivity">
 
     <androidx.cardview.widget.CardView
@@ -27,9 +27,9 @@
 
             <EditText
                 android:id="@+id/messageBox"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:hint="Type a message..."
@@ -39,17 +39,17 @@
 
             <ImageView
                 android:id="@+id/attachment"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:layout_marginRight="12dp"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginEnd="12dp"
                 app:srcCompat="@drawable/ic_attachment"
                 app:tint="#676767" />
 
             <ImageView
                 android:id="@+id/camera"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:layout_marginRight="12dp"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginEnd="12dp"
                 app:srcCompat="@drawable/ic_camera"
                 app:tint="#676767" />
 

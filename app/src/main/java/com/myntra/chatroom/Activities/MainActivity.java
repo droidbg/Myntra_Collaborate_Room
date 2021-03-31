@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,9 +27,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.myntra.chatroom.Adapters.TopStatusAdapter;
-import com.myntra.chatroom.Models.Status;
-import com.myntra.chatroom.Models.UserStatus;
+//import com.myntra.chatroom.Adapters.TopStatusAdapter;
+//import com.myntra.chatroom.Models.Status;
+//import com.myntra.chatroom.Models.UserStatus;
 import com.myntra.chatroom.R;
 import com.myntra.chatroom.Models.User;
 import com.myntra.chatroom.Adapters.UsersAdapter;
@@ -45,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
     FirebaseDatabase database;
     ArrayList<User> users;
     UsersAdapter usersAdapter;
-    TopStatusAdapter statusAdapter;
-    ArrayList<UserStatus> userStatuses;
+   // TopStatusAdapter statusAdapter;
+//    ArrayList<UserStatus> userStatuses;
     ProgressDialog dialog;
 
     User user;
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         users = new ArrayList<>();
-        userStatuses = new ArrayList<>();
+//        userStatuses = new ArrayList<>();
 
         database.getReference().child("users").child(FirebaseAuth.getInstance().getUid())
                 .addValueEventListener(new ValueEventListener() {
@@ -80,17 +81,17 @@ public class MainActivity extends AppCompatActivity {
 
 
         usersAdapter = new UsersAdapter(this, users);
-        statusAdapter = new TopStatusAdapter(this, userStatuses);
+   //     statusAdapter = new TopStatusAdapter(this, userStatuses);
 //        binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.HORIZONTAL);
-        binding.statusList.setLayoutManager(layoutManager);
-        binding.statusList.setAdapter(statusAdapter);
+//        binding.statusList.setLayoutManager(layoutManager);
+//        binding.statusList.setAdapter(statusAdapter);
 
         binding.recyclerView.setAdapter(usersAdapter);
 
         binding.recyclerView.showShimmerAdapter();
-        binding.statusList.showShimmerAdapter();
+       // binding.statusList.showShimmerAdapter();
 
         database.getReference().child("users").addValueEventListener(new ValueEventListener() {
             @Override
@@ -115,25 +116,25 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()) {
-                    userStatuses.clear();
+//                    userStatuses.clear();
                     for(DataSnapshot storySnapshot : snapshot.getChildren()) {
-                        UserStatus status = new UserStatus();
-                        status.setName(storySnapshot.child("name").getValue(String.class));
-                        status.setProfileImage(storySnapshot.child("profileImage").getValue(String.class));
-                        status.setLastUpdated(storySnapshot.child("lastUpdated").getValue(Long.class));
-
-                        ArrayList<Status> statuses = new ArrayList<>();
-
-                        for(DataSnapshot statusSnapshot : storySnapshot.child("statuses").getChildren()) {
-                            Status sampleStatus = statusSnapshot.getValue(Status.class);
-                            statuses.add(sampleStatus);
-                        }
-
-                        status.setStatuses(statuses);
-                        userStatuses.add(status);
+//                        UserStatus status = new UserStatus();
+//                        status.setName(storySnapshot.child("name").getValue(String.class));
+//                        status.setProfileImage(storySnapshot.child("profileImage").getValue(String.class));
+//                        status.setLastUpdated(storySnapshot.child("lastUpdated").getValue(Long.class));
+//
+//                        ArrayList<Status> statuses = new ArrayList<>();
+//
+//                        for(DataSnapshot statusSnapshot : storySnapshot.child("statuses").getChildren()) {
+//                            Status sampleStatus = statusSnapshot.getValue(Status.class);
+//                            statuses.add(sampleStatus);
+//                        }
+//
+//                        status.setStatuses(statuses);
+//                        userStatuses.add(status);
                     }
-                    binding.statusList.hideShimmerAdapter();
-                    statusAdapter.notifyDataSetChanged();
+               //     binding.statusList.hideShimmerAdapter();
+      //              statusAdapter.notifyDataSetChanged();
                 }
             }
 
@@ -164,53 +165,53 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        if(data != null) {
-            if(data.getData() != null) {
-                dialog.show();
-                FirebaseStorage storage = FirebaseStorage.getInstance();
-                Date date = new Date();
-                StorageReference reference = storage.getReference().child("status").child(date.getTime() + "");
-
-                reference.putFile(data.getData()).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                        if(task.isSuccessful()) {
-                            reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                @Override
-                                public void onSuccess(Uri uri) {
-                                    UserStatus userStatus = new UserStatus();
-                                    userStatus.setName(user.getName());
-                                    userStatus.setProfileImage(user.getProfileImage());
-                                    userStatus.setLastUpdated(date.getTime());
-
-                                    HashMap<String, Object> obj = new HashMap<>();
-                                    obj.put("name", userStatus.getName());
-                                    obj.put("profileImage", userStatus.getProfileImage());
-                                    obj.put("lastUpdated", userStatus.getLastUpdated());
-
-                                    String imageUrl = uri.toString();
-                                    Status status = new Status(imageUrl, userStatus.getLastUpdated());
-
-                                    database.getReference()
-                                            .child("stories")
-                                            .child(FirebaseAuth.getInstance().getUid())
-                                            .updateChildren(obj);
-
-                                    database.getReference().child("stories")
-                                            .child(FirebaseAuth.getInstance().getUid())
-                                            .child("statuses")
-                                            .push()
-                                            .setValue(status);
-
-                                    dialog.dismiss();
-                                }
-                            });
-                        }
-                    }
-                });
-            }
-        }
+//
+//        if(data != null) {
+//            if(data.getData() != null) {
+//                dialog.show();
+//                FirebaseStorage storage = FirebaseStorage.getInstance();
+//                Date date = new Date();
+//                StorageReference reference = storage.getReference().child("status").child(date.getTime() + "");
+//
+//                reference.putFile(data.getData()).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+//                        if(task.isSuccessful()) {
+//                            reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                                @Override
+//                                public void onSuccess(Uri uri) {
+//                                    UserStatus userStatus = new UserStatus();
+//                                    userStatus.setName(user.getName());
+//                                    userStatus.setProfileImage(user.getProfileImage());
+//                                    userStatus.setLastUpdated(date.getTime());
+//
+//                                    HashMap<String, Object> obj = new HashMap<>();
+//                                    obj.put("name", userStatus.getName());
+//                                    obj.put("profileImage", userStatus.getProfileImage());
+//                                    obj.put("lastUpdated", userStatus.getLastUpdated());
+//
+//                                    String imageUrl = uri.toString();
+//                                    Status status = new Status(imageUrl, userStatus.getLastUpdated());
+//
+//                                    database.getReference()
+//                                            .child("stories")
+//                                            .child(FirebaseAuth.getInstance().getUid())
+//                                            .updateChildren(obj);
+//
+//                                    database.getReference().child("stories")
+//                                            .child(FirebaseAuth.getInstance().getUid())
+//                                            .child("statuses")
+//                                            .push()
+//                                            .setValue(status);
+//
+//                                    dialog.dismiss();
+//                                }
+//                            });
+//                        }
+//                    }
+//                });
+//            }
+//        }
     }
 
     @Override
@@ -247,5 +248,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.topmenu, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    public void gotoGroup(View view) {
+        startActivity(new Intent(MainActivity.this, GroupChatActivity.class));
     }
 }

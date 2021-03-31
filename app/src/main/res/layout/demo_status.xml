@@ -4,9 +4,9 @@
     android:layout_height="wrap_content"
     android:padding="5dp">
 
-    <View
-        android:id="@+id/view6"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:background="@drawable/circle_bg" />
+<!--    <View-->
+<!--        android:id="@+id/view6"-->
+<!--        android:layout_width="48dp"-->
+<!--        android:layout_height="48dp"-->
+<!--        android:background="@drawable/circle_bg" />-->
 </LinearLayout>
