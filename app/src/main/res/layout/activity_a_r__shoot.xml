@@ -5,5 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activities.AR_Shoot">
+<fragment
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/arFragment"
+    android:name="com.myntra.chatroom.CustomARFragment"
+    />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

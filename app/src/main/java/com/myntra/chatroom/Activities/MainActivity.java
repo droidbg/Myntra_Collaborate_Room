@@ -253,4 +253,8 @@ public class MainActivity extends AppCompatActivity {
     public void gotoGroup(View view) {
         startActivity(new Intent(MainActivity.this, GroupChatActivity.class));
     }
+
+    public void aractivity(View view) {
+        startActivity(new Intent(MainActivity.this, AR_Shoot.class));
+    }
 }
